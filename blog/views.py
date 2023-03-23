@@ -19,24 +19,26 @@ def index(request):
     
 
     
-        rstphone = Products.objects.filter(Q(Product_name__contains='Galaxy s22') | Q(Product_name__contains='iphone 14')| Q(Product_name__contains='iphone 13')| Q(Product_name__contains='iphone 12')).filter(Product_price__gte=8000)
+        rstphone = Products.objects.filter(Q(Product_name__contains='Galaxy s22') | Q(Product_name__contains='iphone 14')| Q(Product_name__contains='huawei p50 Pocket')| Q(Product_name__contains='iphone 12')| Q(Product_name__contains='Samsung Galaxy Note 20')| Q(Product_name__contains='Xiaomi Mi 11')| Q(Product_name__contains='Samsung Galaxy A72')| Q(Product_name__contains='iphone 14')| Q(Product_name__contains='Poco X5 5G')| Q(Product_name__contains='Redmi Note 10 Pro')| Q(Product_name__contains='Xiaomi 12T Pro')| Q(Product_name__contains='Redmi Note 11')| Q(Product_name__contains='Oppo A96')).filter(Product_price__gte=7000)
+        rstpc = Products.objects.filter(Q(Product_name__contains='msi modern 15') | Q(Product_name__contains='lenovo ideapad 3')| Q(Product_name__contains='Asus Zenbook')| Q(Product_name__contains='Asus Rogstrix')| Q(Product_name__contains='Apple Macbook')| Q(Product_name__contains='Monster')| Q(Product_name__contains='Asus Rog Zephyrus')| Q(Product_name__contains='Hp Victus Gaming')| Q(Product_name__contains='Dell Latitude')| Q(Product_name__contains='acer nitro 5 intel')).filter(Product_price__gte=15000)
         
         listphone=random.choices(rstphone.values(), k=6)
-        
+        listpc=random.choices(rstpc.values(), k=6)
         def a(price):
  
            
             plist=str(price).split(".")
-            try:
-                plist[0]= plist[0][:-3]+"."+plist[0][-3:] 
-            except:
-                pass
-            
+            if len(plist[0])>3:
+                try:
+                    plist[0]= plist[0][:-3]+"."+plist[0][-3:] 
+                except:
+                    pass
+                
             price=",".join(plist)+"TL"
             return price
 
 
-        listpc=[]
+        
         listpopular=[]
         listelectronic=[]
 
@@ -46,22 +48,22 @@ def index(request):
         htmtext="""
         <div class="hometop">
         <div class="divpopular">
-        <label class="lblpopular">Popüler Ürünler</label>
+        <label class="lblpopular">Bilgisayar</label>
         </div>
         <div class="homeprdct">
-            <div target="_blank" class="homeprd"><img src="""+listphone[0]["Product_image"]+"""><a href="""+listphone[0]["Product_link"]+""">"""+listphone[0]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listphone[0]["Product_price"])+"""</label></div></div>
-            <div class="homeprd"><img src="""+listphone[1]["Product_image"]+"""><a href="""+listphone[1]["Product_link"]+">"+listphone[1]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listphone[0]["Product_price"])+"""</label></div></div>
-            <div class="homeprd"><img src="""+listphone[2]["Product_image"]+"""><a href="""+listphone[2]["Product_link"]+">"+listphone[2]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listphone[0]["Product_price"])+"""</label></div></div>
-            <div class="homeprd"><img src="""+listphone[3]["Product_image"]+"""><a href="""+listphone[3]["Product_link"]+">"+listphone[3]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listphone[0]["Product_price"])+"""</label></div></div>
-            <div class="homeprd"><img src="""+listphone[4]["Product_image"]+"""><a href="""+listphone[4]["Product_link"]+">"+listphone[4]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listphone[0]["Product_price"])+"""</label></div></div>
-            <div class="homeprd"><img src="""+listphone[5]["Product_image"]+"""><a href="""+listphone[5]["Product_link"]+">"+listphone[5]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listphone[0]["Product_price"])+"""</label></div></div>
+            <div target="_blank" class="homeprd"><img src="""+listpc[0]["Product_image"]+"""><a href="""+listpc[0]["Product_link"]+""">"""+listpc[0]["Product_name"].title()+"""</a><div class="pricediv"><b class="pprice">"""+a(listpc[0]["Product_price"])+"""</b></div></div>
+            <div class="homeprd"><img src="""+listpc[1]["Product_image"]+"""><a href="""+listpc[1]["Product_link"]+">"+listpc[1]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listpc[1]["Product_price"])+"""</label></div></div>
+            <div class="homeprd"><img src="""+listpc[2]["Product_image"]+"""><a href="""+listpc[2]["Product_link"]+">"+listpc[2]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listpc[2]["Product_price"])+"""</label></div></div>
+            <div class="homeprd"><img src="""+listpc[3]["Product_image"]+"""><a href="""+listpc[3]["Product_link"]+">"+listpc[3]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listpc[3]["Product_price"])+"""</label></div></div>
+            <div class="homeprd"><img src="""+listpc[4]["Product_image"]+"""><a href="""+listpc[4]["Product_link"]+">"+listpc[4]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listpc[4]["Product_price"])+"""</label></div></div>
+            <div class="homeprd"><img src="""+listpc[5]["Product_image"]+"""><a href="""+listpc[5]["Product_link"]+">"+listpc[5]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listpc[5]["Product_price"])+"""</label></div></div>
         </div>
         <hr class="topline">
         <div class="divphone">
         <label class="lblphone">Telefon</label>
         </div>
         <div class="homeprdct"> 
-            <div target="_blank" class="homeprd"><img src="""+listphone[0]["Product_image"]+"""><a href="""+listphone[0]["Product_link"]+""">"""+listphone[0]["Product_name"]+"""</a><div class="pricediv"><label class="pprice">"""+a(listphone[0]["Product_price"])+"""</label></div></div>
+            <div target="_blank" class="homeprd"><img src="""+listphone[0]["Product_image"]+"""><a href="""+listphone[0]["Product_link"]+""">"""+listphone[0]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listphone[0]["Product_price"])+"""</label></div></div>
             <div class="homeprd"><img src="""+listphone[1]["Product_image"]+"""><a href="""+listphone[1]["Product_link"]+">"+listphone[1]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listphone[1]["Product_price"])+"""</label></div></div>
             <div class="homeprd"><img src="""+listphone[2]["Product_image"]+"""><a href="""+listphone[2]["Product_link"]+">"+listphone[2]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listphone[2]["Product_price"])+"""</label></div></div>
             <div class="homeprd"><img src="""+listphone[3]["Product_image"]+"""><a href="""+listphone[3]["Product_link"]+">"+listphone[3]["Product_name"].title()+"""</a><div class="pricediv"><label class="pprice">"""+a(listphone[3]["Product_price"])+"""</label></div></div>
@@ -87,7 +89,7 @@ def index(request):
 
 
         </div>
-        
+        <hr class="topline">
         <div class="divelectronic">
         <label class="lblelectronic">Elektronik</label>
         </div>
@@ -129,10 +131,10 @@ def kayit(request):
 
 def urunara(request):
 
-   
+
     context ={}
     context['form']= ProductForm()
- 
+
     import os
     import re
     import sys      
@@ -217,11 +219,14 @@ def urunara(request):
  
            
             plist=str(price).split(".")
-            try:
-                plist[0]= plist[0][:-3]+"."+plist[0][-3:] 
-            except:
-                pass
-            
+           
+
+            if len(plist[0])>3:
+                try:
+                    plist[0]= plist[0][:-3]+"."+plist[0][-3:] 
+                except:
+                    pass
+                
             price=",".join(plist)+"TL"
             return price
 
@@ -237,22 +242,19 @@ def urunara(request):
             #{% static 'logo/image.ext' %}
             cntname=m[1].replace(","," ").replace("'"," ").replace('"'," ").replace("-"," ").replace("+"," ").replace(";"," ").replace("."," ").replace("*"," ").split()
             wordcontrol=False
-            linklist=["https://www.trendyol.com/","https://www.hepsiburada.com/","https://www.amazon.com.tr/","https://cdn.dsmcdn.com/","https://productimages.hepsiburada.net/","https://m.media-amazon.com/"]
+            linklist=["https://www.trendyol.com/","https://www.hepsiburada.com/","https://www.amazon.com.tr/","https://cdn.dsmcdn.com/","https://productimages.hepsiburada.net/","https://m.media-amazon.com/","https://adservice.hepsiburada.com/"]
             breakfor=False
             for i in linklist:
                 if i in str(m[4][0:46]):
                     break
-                
-                if i=="https://m.media-amazon.com/":
+                if i==linklist[-1]:
                     if i not in str(m[4][0:46]):
                         breakfor=True
-            for i in linklist:
-                if i in str(m[3][0:46]):
-                    break
+                    
+            ###### geçici
+            ###### geçici /
                 
-                if i=="https://m.media-amazon.com/":
-                    if i not in str(m[3][0:46]):
-                        breakfor=True  
+
             if breakfor==True:
                 continue
                         
@@ -281,7 +283,7 @@ def urunara(request):
             source="/static/logo/"+m[5]+".jpg"
             htmtext+='<tr>\n'
             htmtext+='<td class="productimg"><img id="myImg" onclick="replyclick(this.src)"  src="'+str(m[4])+'"></td>\n'
-            htmtext+='<td class="prdname"><a target="_blank" href="'+str(m[3]).title()+'">'+str(m[1])+'<a></td>\n'
+            htmtext+='<td class="prdname"><a target="_blank" href="'+str(m[3])+'">'+str(m[1]).title()+'<a></td>\n'
 
             htmtext+='<td    class="price">'+a(m[2])+'</td>\n'
 
